@@ -52,7 +52,7 @@ public class WindowInputTest extends JFrame {
 	 * Create the frame.
 	 */
 	public WindowInputTest() {
-		windowCatcher = new VRDWindowInitOnce("Wargame: Red Dragon - DirectX 11"); // THIS IS WHERE YOU CHANGE THE PROGRAM TO TAKE THE VIEW OF. IT IS BASED OFF OF WINDOW Title (NOT TSKMGR NAME)
+		windowCatcher = new VRDWindowInitOnce("Steam"); // THIS IS WHERE YOU CHANGE THE PROGRAM TO TAKE THE VIEW OF. IT IS BASED OFF OF WINDOW Title (NOT TSKMGR NAME)
 		// Next Step is to get a dropdown of all windows and auto unminimize and store previous state
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
