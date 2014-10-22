@@ -73,7 +73,14 @@ public class VRDWindowInitOnce {
 		bmi.bmiHeader.biPlanes = 1;
 		bmi.bmiHeader.biBitCount = 32;
 		bmi.bmiHeader.biCompression = WinGDI.BI_RGB;
+		
 
+		// Error is here. I don't know where JNA is getting these numbers from...
+		System.out.println("bounds.right:" + bounds.right + ", bounds.left:" + bounds.left);
+		System.out.println("bounds.bottom:" + bounds.bottom + ", bounds.top:" + bounds.top);
+		System.out.println("width:" + width + ", height:" + height);
+		
+		
 		buffer = new Memory(width * height * 4);
 		GDI32.INSTANCE.GetDIBits(hdcWindow, hBitmap, 0, height, buffer, bmi,
 				WinGDI.DIB_RGB_COLORS);

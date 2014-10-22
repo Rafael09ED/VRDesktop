@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.MemoryImageSource;
 
 
+
 import jna.extra.GDI32Extra;
 import jna.extra.User32Extra;
 import jna.extra.WinGDIExtra;
@@ -63,6 +64,12 @@ public class VRDWindow {
 		bmi.bmiHeader.biBitCount = 32;
 		bmi.bmiHeader.biCompression = WinGDI.BI_RGB;
 
+		
+		// Same error as exhibited in VRDWindowInitOnce. This code should be unified, it's mostly the same...
+		System.out.println("bounds.right:" + bounds.right + ", bounds.left:" + bounds.left);
+		System.out.println("bounds.bottom:" + bounds.bottom + ", bounds.top:" + bounds.top);
+		System.out.println("width:" + width + ", height:" + height);
+				
 		Memory buffer = new Memory(width * height * 4);
 		GDI32.INSTANCE.GetDIBits(hdcWindow, hBitmap, 0, height, buffer, bmi,
 				WinGDI.DIB_RGB_COLORS);
