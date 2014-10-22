@@ -65,7 +65,7 @@ public class OpenGLEngine {
 
 		glBegin(GL_QUADS); // liveTexture.getImageHeight()
 							// liveTexture.getImageWidth()
-		glTexCoord2d(0.0, 0.0);
+		glTexCoord2d(0.0, 0.0); // Reed says that this is really slow and bad, and that we should use buffer image (idk what that is)
 		glVertex2i(0, liveTexture.getImageHeight());
 		glTexCoord2d(1.0, 0.0);
 		glVertex2i(liveTexture.getImageWidth(), liveTexture.getImageHeight());
