@@ -2,28 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/starm_000/workspace/x_Jars/JNA/jna.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="http://twall.github.io/jna/3.4.1/javadoc/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/starm_000/workspace/x_Jars/JNA/platform.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="http://twall.github.io/jna/4.0/javadoc/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/starm_000/workspace/x_Jars/lwjgl-2.9.1/jar/lwjgl.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="http://lwjgl.org/wiki/index.php?title=Main_Page#Getting_started"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/starm_000/workspace/x_Jars/lwjgl-2.9.1/native/windows"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/starm_000/workspace/x_Jars/lwjgl-2.9.1/jar/lwjgl_util.jar"/>
-	<classpathentry kind="lib" path="C:/Users/starm_000/workspace/x_Jars/lwjgl-2.9.1/Slick-Util/slick-util.jar"/>
-	<classpathentry kind="lib" path="C:/Users/starm_000/workspace/x_Jars/commons-lang3-3.3.2/commons-lang3-3.3.2.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/Users/starm_000/workspace/x_Jars/commons-lang3-3.3.2/commons-lang3-3.3.2-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="x_Dependencies/commons-lang3-3.3.2/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="x_Dependencies/JNA/jna.jar"/>
+	<classpathentry kind="lib" path="x_Dependencies/JNA/platform.jar"/>
+	<classpathentry kind="lib" path="x_Dependencies/lwjgl-2.9.1/jar/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="x_Dependencies/lwjgl-2.9.1/jar/lwjgl.jar"/>
+	<classpathentry kind="lib" path="x_Dependencies/lwjgl-2.9.1/Slick-Util/slick-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
