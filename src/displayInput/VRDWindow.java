@@ -66,9 +66,9 @@ public class VRDWindow {
 
 		
 		// Same error as exhibited in VRDWindowInitOnce. This code should be unified, it's mostly the same...
-		System.out.println("bounds.right:" + bounds.right + ", bounds.left:" + bounds.left);
-		System.out.println("bounds.bottom:" + bounds.bottom + ", bounds.top:" + bounds.top);
-		System.out.println("width:" + width + ", height:" + height);
+		//System.out.println("bounds.right:" + bounds.right + ", bounds.left:" + bounds.left);
+		//System.out.println("bounds.bottom:" + bounds.bottom + ", bounds.top:" + bounds.top);
+		//System.out.println("width:" + width + ", height:" + height);
 				
 		Memory buffer = new Memory(width * height * 4);
 		GDI32.INSTANCE.GetDIBits(hdcWindow, hBitmap, 0, height, buffer, bmi,

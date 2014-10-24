@@ -2,6 +2,7 @@ import tools.progressTracker;
 
 
 public class VRDLauncher {
+	//This is the launcher that will manage the whole program, choosing to launch the menu or the program eventually
 	@SuppressWarnings("unused")
 	private String launcherVersion = "00.00.00.01 pre-alpha";
 	

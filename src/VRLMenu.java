@@ -38,7 +38,7 @@ public class VRLMenu extends JFrame {
 	 * @param args 
 	 */
 	public static void menuManager(progressTracker ProgressTrakerIn) {
-		loadingProgressTracker = ProgressTrakerIn; 
+		loadingProgressTracker = ProgressTrakerIn; // Not in use, reserved for larger load times
 		try {
 			VRLMenu frame = new VRLMenu();
 			
@@ -46,7 +46,7 @@ public class VRLMenu extends JFrame {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			loadingProgressTracker.setProgressStatus("Init Failed", -1);
+			loadingProgressTracker.setProgressStatus("Init Failed", -1); // for the progress tracker
 		}
 		
 	}
@@ -55,7 +55,9 @@ public class VRLMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public VRLMenu() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/resources/graphics/logos/Logo2.png"));
+		// sets the window's icon
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/resources/graphics/logos/Logo2.png")); 
+		//sets look and feel to system's
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException

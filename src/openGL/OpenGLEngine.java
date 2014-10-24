@@ -55,7 +55,7 @@ public class OpenGLEngine {
 
 	public static void drawWindowIn() throws Exception {
 		windowCatcher = new VRDWindow("Steam");
-
+		
 		// InternalTextureLoader.createTextureID();
 		glEnable(GL_TEXTURE_2D);
 		Texture liveTexture = BufferedImageUtil.getTexture("liveWindowTexture",
