@@ -29,6 +29,10 @@ import javax.swing.JScrollPane;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
+// I Am going to have to reorganize all this code because it does what it is suppose to, just not when I want it! 
+// WindowSizeCalc needs to be verified
+// simplify, consolidate, comment
+
 public class windowSelector extends JFrame {
 
 	private JPanel contentPane;
@@ -81,7 +85,7 @@ public class windowSelector extends JFrame {
 
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
-				System.out.println(arg0);
+				
 				int index = -1;
 				if (arg0.getValueIsAdjusting()) {
 					index = arg0.getFirstIndex();
@@ -91,8 +95,11 @@ public class windowSelector extends JFrame {
 
 				if (listModel.get(index).equals("None")) {
 					displayWindow(null);
+					return;
 				}
-				displayWindow(HWNDWindowsHandles.get(index));
+				displayWindow(HWNDWindowsHandles.get(index-1));
+				wsCalculator.updateAppSize(windowCatcher.getDimension());
+				wsCalculator.updateWindowSpace(new Dimension(getSize().width - scrollPane.getWidth(), getHeight()));
 
 			}
 		});
@@ -103,6 +110,7 @@ public class windowSelector extends JFrame {
 		contentPane.add(scrollPane, BorderLayout.WEST);
 		//windowPanel.show();
 		
+		wsCalculator.updateWindowSpace(new Dimension(getSize().width - scrollPane.getWidth(), getHeight()));
 		
 		
 		// adds resize display calculator 
@@ -111,9 +119,9 @@ public class windowSelector extends JFrame {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent arg0) {
-				if (currentHWND != null) {
+				//if (currentHWND != null) {
 					wsCalculator.updateWindowSpace(new Dimension(getSize().width - scrollPane.getWidth(), getHeight()));
-				}
+				//}
 			}
 		});
 	}
@@ -151,7 +159,7 @@ public class windowSelector extends JFrame {
 
 					Graphics g = getGraphics();
 					
-					g.drawImage(windowCatcher.getNewFrame(), 1, 1, (int) displaySize.getWidth(), (int)displaySize.getHeight(), null);
+					g.drawImage(windowCatcher.getNewFrame(), scrollPane.getWidth()+5, 5, (int) displaySize.getWidth(), (int)displaySize.getHeight(), null);
 					windowPanel.validate();
 					
 					

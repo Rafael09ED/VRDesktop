@@ -32,7 +32,7 @@ public class WindowSizeCalulator {
 	
 	public void updateAppSize(Dimension newAppSize){
 		processedAppSize = new Dimension(appSize);
-		windowSpace = newAppSize;
+		appSize = newAppSize;
 		updateDisplaySize();
 	}
 	
@@ -43,7 +43,8 @@ public class WindowSizeCalulator {
 	}
 	
 	private void updateDisplaySize() {
-		System.out.println(windowSpace + "" + appSize);
+		System.out.println("Window Size is: " + windowSpace);
+		System.out.println("App Size is   : " + appSize);
 		int WindowWidth = (int) windowSpace.getWidth();
 		int WindowHeight = (int) windowSpace.getHeight();
 		
@@ -70,7 +71,7 @@ public class WindowSizeCalulator {
 			displaySize.setSize(AppWidth, AppHeight); System.out.println("5");
  
 		}
-		System.out.println(displaySize.toString());
+		System.out.println("DisplaySize is :" + displaySize.toString());
 		processedWindowSpace = new Dimension(windowSpace);
 		processedAppSize = new Dimension(appSize);
 	}
