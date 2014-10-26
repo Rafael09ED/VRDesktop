@@ -36,8 +36,7 @@ public class VRDWindowInitOnce {
 	private Memory buffer;
 	private HDC hdcWindow;
 	private HBITMAP hBitmap;
-	private int width;
-	private int height;
+	private int width, height;
 	private BITMAPINFO bmi;
 	private boolean needsInit;
 	private HDC hdcMemDC;
@@ -45,6 +44,8 @@ public class VRDWindowInitOnce {
 	private RECT bounds;
 	private BufferedImage image;
 	private int oldWidth, oldHeight;
+	private HWNDWindowManager WindowManagerParent;
+
 	Dimension size;
 
 	public void bufferedInit() {
@@ -52,7 +53,7 @@ public class VRDWindowInitOnce {
 		hdcWindow = (User32Extra.INSTANCE).GetWindowDC(hWnd);
 		hdcMemDC = GDI32.INSTANCE.CreateCompatibleDC(hdcWindow);
 
-		bounds = new RECT();
+		//bounds = new RECT();
 		User32Extra.INSTANCE.GetWindowRect(hWnd, bounds);
 
 		width = bounds.right - bounds.left;
@@ -75,12 +76,9 @@ public class VRDWindowInitOnce {
 		bmi.bmiHeader.biBitCount = 32;
 		bmi.bmiHeader.biCompression = WinGDI.BI_RGB;
 
-		// Error is here. I don't know where JNA is getting these numbers
-		// from...
-		// System.out.println("bounds.right:" + bounds.right + ", bounds.left:"
-		// + bounds.left);
-		// System.out.println("bounds.bottom:" + bounds.bottom + ", bounds.top:"
-		// + bounds.top);
+		// Error is here. I don't know where JNA is getting these numbers from...   - letters // 90% sure its position and size on window - rafael
+		// System.out.println("bounds.right:" + bounds.right + ", bounds.left:" + bounds.left);
+		// System.out.println("bounds.bottom:" + bounds.bottom + ", bounds.top:" + bounds.top);
 		// System.out.println("width:" + width + ", height:" + height);
 
 		buffer = new Memory(width * height * 4);
@@ -102,10 +100,24 @@ public class VRDWindowInitOnce {
 		User32.INSTANCE.ReleaseDC(hWnd, hdcWindow);
 
 		needsInit = false;
+		
+		oldWidth = width; // use to always do full render because of not having this
+		oldHeight = height;
+		if (WindowManagerParent != null) {
+			WindowManagerParent.updateAppSize(width, height);
+		}
+		
+		
 		size.setSize(width, height);
 	}
 
 	public BufferedImage capture() {
+			
+		User32Extra.INSTANCE.GetWindowRect(hWnd, bounds);
+
+		width = bounds.right - bounds.left;
+		height = bounds.bottom - bounds.top;
+		
 		if (needsInit || (oldWidth != width || oldHeight != height)) {
 			bufferedInit();
 			return image;
@@ -159,10 +171,6 @@ public class VRDWindowInitOnce {
 		hWnd = User32.INSTANCE.FindWindow(null, programTitleIn);
 		// hWnd = User32.INSTANCE.FindWindow(null , "Steam"); //programTitleIn); // All this stuff was for testing values and how it works
 		// hWnd = User32.INSTANCE.FindWindow("RainmeterMeterWindow" , null);
-		// char[] myChar = new char[256];
-		// User32.INSTANCE.GetClassName(hWnd, myChar, 256);
-		// System.out.println(Arrays.toString(myChar));
-		// System.out.println(hWnd);
 		allConstuctors();
 		
 	}
@@ -176,9 +184,16 @@ public class VRDWindowInitOnce {
 	public VRDWindowInitOnce() {
 		allConstuctors();
 	}
+	
+	public VRDWindowInitOnce(HWNDWindowManager WindowManagerIn){
+		WindowManagerParent = WindowManagerIn;
+		allConstuctors();
+	}
+	
 	public void allConstuctors(){
 		needsInit = true;
 		size = new Dimension();
+		bounds = new RECT();
 	}
 	public void setWindow(HWND hWndIn) {
 		hWnd = hWndIn;
