@@ -11,19 +11,29 @@ import com.sun.jna.platform.win32.WinDef.HWND;
 // working on a functioning window previewer - probably should have created classes using extends, but :P - rafael
 public class HWNDWindowManager {
 	
-	private ArrayList<HWND> HWNDWindowsHandles;
 	
 	private Dimension appSize;
 	private Dimension windowSpace;
+	private int HWNDDisplayWindowIndex;
+	private VRDWindowInitOnce windowCatcher;
 	
+	Dimension displaySize; // Dimensions for displaying the window
+	ArrayList<HWND> HWNDWindowsHandles; // |VALID| window handles
 	
 	//Dimension processedWindowSpace;
 	//Dimension processedAppSize;
 	
-	Dimension displaySize; // Dimensions for displaying the window
+
 	
 	public HWNDWindowManager() { // constructor for window manager
-		
+		windowCatcher = new VRDWindowInitOnce(this);
+		appSize = new Dimension(1,1);
+		HWNDDisplayWindowIndex = -1;
+		displaySize = new Dimension(1,1);
+		HWNDWindowsHandles = new ArrayList<HWND>();
+	}
+	public int getWindowIndex(){
+		return HWNDDisplayWindowIndex;
 	}
 
 	public void updateAppSize(int widthIn, int heightIn) {
@@ -39,9 +49,20 @@ public class HWNDWindowManager {
 		updateDisplaySize();
 
 	}
+	public void setDisplayWindow(int indexIn){
+		HWNDDisplayWindowIndex = indexIn-1;
+		if (indexIn == 0) {
+			return;
+		}
+		windowCatcher.setWindow(HWNDWindowsHandles.get(HWNDDisplayWindowIndex));
+	}
 	
 	private void updateDisplaySize() {
 		
+		if (HWNDDisplayWindowIndex == -1) {
+			return;
+		}
+		System.out.println("For the window" + HWNDTools.getWindowTitle(HWNDWindowsHandles.get(HWNDDisplayWindowIndex)));
 		System.out.println("Window Size is: " + windowSpace);
 		System.out.println("App Size is   : " + appSize);
 		
@@ -78,28 +99,39 @@ public class HWNDWindowManager {
 		//processedAppSize = new Dimension(appSize);
 	}
 	public BufferedImage getNewFrame(){
-		
-		
-		
-		return null;
+		return windowCatcher.getNewFrame();
 	}
 
 	public DefaultListModel getListModel() {
-		HWNDWindowsHandles = HWNDTools.getOpenWindowsHandels(); // Use HWNDTools to get handles of open windows
+		ArrayList<HWND> AllHWNDWindowsHandles = HWNDTools.getOpenWindowsHandels(); // Use HWNDTools to get handles of open windows
 		DefaultListModel listModelTemp = new DefaultListModel(); // create a default list model
 		
 		listModelTemp.addElement("None"); // First Element is none so no window will show
 		
 		
-		for (int i = 0; i < HWNDWindowsHandles.size(); i++) {
-			if (!VRDWindowInitOnce.isValid(HWNDWindowsHandles.get(i))) {
-				break;
+		for (int i = 1; i < AllHWNDWindowsHandles.size(); i++) {
+			
+			System.out.println("trying " + AllHWNDWindowsHandles.get(i-1));
+			
+			if (VRDWindowInitOnce.isValid(AllHWNDWindowsHandles.get(i-1))) {
+				listModelTemp.addElement(HWNDTools.getWindowTitle(AllHWNDWindowsHandles.get(i-1)));
+				HWNDWindowsHandles.add(AllHWNDWindowsHandles.get(i-1));
+			} else {
+				//System.out.println("I am going to break");
 			}
 
-			listModelTemp.addElement(HWNDTools.getWindowTitle(HWNDWindowsHandles.get(i)));
+			
 			// System.out.println(HWNDTools.getWindowTitle(HWNDWindowsHandles.get(i)));
 
 		}
 		return listModelTemp;
+	}
+	
+
+	public int getWidth() {
+		return displaySize.width;
+	}
+	public int getHeight() {
+		return displaySize.height;
 	}
 }

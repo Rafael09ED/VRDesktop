@@ -112,7 +112,7 @@ public class VRDWindowInitOnce {
 	}
 
 	public BufferedImage capture() {
-			
+		image.flush();
 		User32Extra.INSTANCE.GetWindowRect(hWnd, bounds);
 
 		width = bounds.right - bounds.left;
@@ -157,8 +157,10 @@ public class VRDWindowInitOnce {
 		}
 		RECT bounds2 = new RECT();
 		User32Extra.INSTANCE.GetWindowRect(hWnd, bounds2);
-
-		if (bounds2.right < bounds2.left || bounds2.bottom < bounds2.top) {
+		
+		System.out.println(hWnd + " " + bounds2);
+		//if (bounds2.right < bounds2.left || bounds2.bottom > bounds2.top) {
+		if (bounds2.right <= 0 || bounds2.left <= 0 || bounds2.bottom <= 0 || bounds2.top <= 0) {
 			return false;
 		}
 
@@ -194,6 +196,7 @@ public class VRDWindowInitOnce {
 		needsInit = true;
 		size = new Dimension();
 		bounds = new RECT();
+		image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 	}
 	public void setWindow(HWND hWndIn) {
 		hWnd = hWndIn;

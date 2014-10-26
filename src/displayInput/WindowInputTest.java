@@ -82,5 +82,6 @@ public class WindowInputTest extends JFrame {
 		System.out.println(fpsCounter.getFPS());
 		
 	}
+	
 
 }
