@@ -171,6 +171,7 @@ public class VRDWindowInitOnce {
 	public VRDWindowInitOnce(String programTitleIn) {
 
 		hWnd = User32.INSTANCE.FindWindow(null, programTitleIn);
+		User32.INSTANCE.	//want to name the frame it creates after the window it is capturing
 		// hWnd = User32.INSTANCE.FindWindow(null , "Steam"); //programTitleIn); // All this stuff was for testing values and how it works
 		// hWnd = User32.INSTANCE.FindWindow("RainmeterMeterWindow" , null);
 		allConstuctors();
