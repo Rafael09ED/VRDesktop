@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import openGL.OpenGLEngine;
 import displayInput.WindowInputTest;
 import displayInput.WindowInputTester;
+import displayInput.WindowSelector;
 import tools.progressTracker;
 
 import java.awt.Image;
@@ -125,6 +126,16 @@ public class VRLMenu extends JFrame {
 		});
 		btnLaunchOpenglTest.setBounds(203, 11, 151, 23);
 		panel_3.add(btnLaunchOpenglTest);
+		
+		JButton btnNewButton_1 = new JButton("Open Window Selector");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String[] arguments = new String[] {"123"};
+			    WindowSelector.main(arguments);
+			}
+		});
+		btnNewButton_1.setBounds(10, 45, 183, 23);
+		panel_3.add(btnNewButton_1);
 		
 		JPanel panel_4 = new JPanel();
 		tabbedPane_1.addTab("Test Settings", null, panel_4, null);
