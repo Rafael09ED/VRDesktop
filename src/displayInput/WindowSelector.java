@@ -120,7 +120,7 @@ public class WindowSelector {
 					
 					
 					
-					Runtime.getRuntime().gc();
+					//Runtime.getRuntime().gc();
 					if (WindowManager.getWindowIndex() != -1) {
 						g = appWindowPanel.getGraphics();
 						//g.clearRect(0, 0, appWindowPanel.getWidth(), appWindowPanel.getHeight());

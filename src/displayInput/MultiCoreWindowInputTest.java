@@ -21,7 +21,7 @@ public class MultiCoreWindowInputTest extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	BufferedImage img;
+	private BufferedImage img;
 	private static FPSCounter fpsCounter;
 	private VRDWindow windowCatcher;
 	static MultiCoreWindowInputTest frame;

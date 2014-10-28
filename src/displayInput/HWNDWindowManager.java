@@ -17,8 +17,8 @@ public class HWNDWindowManager {
 	private int HWNDDisplayWindowIndex;
 	private VRDWindowInitOnce windowCatcher;
 	
-	Dimension displaySize; // Dimensions for displaying the window
-	ArrayList<HWND> HWNDWindowsHandles; // |VALID| window handles
+	private Dimension displaySize; // Dimensions for displaying the window
+	private ArrayList<HWND> HWNDWindowsHandles; // |VALID| window handles
 	
 	//Dimension processedWindowSpace;
 	//Dimension processedAppSize;
