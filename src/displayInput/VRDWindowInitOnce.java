@@ -106,7 +106,7 @@ public class VRDWindowInitOnce {
 			WindowManagerParent.updateAppSize(width, height);
 		}
 		
-		
+		GDI32.INSTANCE.DeleteDC(hdcMemDC); // Adding this line fixes the memory leak
 		size.setSize(width, height);
 	}
 
@@ -122,7 +122,9 @@ public class VRDWindowInitOnce {
 			return image;
 		}
 		hdcWindow = (User32Extra.INSTANCE).GetWindowDC(hWnd);
-		hdcMemDC = GDI32.INSTANCE.CreateCompatibleDC(hdcWindow);
+		hdcMemDC = GDI32.INSTANCE.CreateCompatibleDC(hdcWindow); 
+		// Commenting out creating a new hdcMemDC and Deleting it would increase ram but may decrease CPU
+		// for getting the frame past the init
 
 		hBitmap = GDI32.INSTANCE.CreateCompatibleBitmap(hdcWindow, width,
 				height);
@@ -144,7 +146,9 @@ public class VRDWindowInitOnce {
 
 		GDI32.INSTANCE.DeleteObject(hBitmap);
 		User32.INSTANCE.ReleaseDC(hWnd, hdcWindow);
-
+		
+		GDI32.INSTANCE.DeleteObject(hWnd);
+		GDI32.INSTANCE.DeleteDC(hdcMemDC);
 		return image;
 
 	}
@@ -170,7 +174,7 @@ public class VRDWindowInitOnce {
 	public VRDWindowInitOnce(String programTitleIn) {
 
 		hWnd = User32.INSTANCE.FindWindow(null, programTitleIn);
-		User32.INSTANCE.	//want to name the frame it creates after the window it is capturing
+		//want to name the frame it creates after the window it is capturing
 		// hWnd = User32.INSTANCE.FindWindow(null , "Steam"); //programTitleIn); // All this stuff was for testing values and how it works
 		// hWnd = User32.INSTANCE.FindWindow("RainmeterMeterWindow" , null);
 		allConstuctors();

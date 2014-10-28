@@ -16,9 +16,6 @@ import tools.FPSCounter;
 
 public class WindowInputTest extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	BufferedImage img;
