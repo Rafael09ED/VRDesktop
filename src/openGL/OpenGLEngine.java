@@ -9,7 +9,7 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.util.BufferedImageUtil;
 
 import tools.FPSCounter;
-import displayInput.VRDWindow;
+import x_old.VRDWindow;
 import static org.lwjgl.opengl.GL11.*;
 
 public class OpenGLEngine {

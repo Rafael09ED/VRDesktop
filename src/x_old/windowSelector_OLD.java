@@ -1,4 +1,4 @@
-package displayInput;
+package x_old;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -21,11 +21,15 @@ import javax.swing.ListSelectionModel;
 
 import com.sun.jna.platform.win32.WinDef.HWND;
 
+import displayInput.HWNDTools;
+import displayInput.VRDWindowInitOnce;
+
 import java.awt.FlowLayout;
 
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JScrollPane;
+
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 

@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import org.omg.CORBA.INTF_REPOS;
 
 import tools.FPSCounter;
+import x_old.VRDWindow;
 
 public class MultiCoreWindowInputTest extends JFrame {
 

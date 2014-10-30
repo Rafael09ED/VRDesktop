@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import x_old.VRDWindow;
+
 public class WindowInputTester extends JComponent {
 
 	private static final long serialVersionUID = 1L;
