@@ -24,6 +24,10 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 
 public class VRLMenu extends JFrame {
@@ -34,6 +38,8 @@ public class VRLMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	static progressTracker loadingProgressTracker;
+	private JTextField textField;
+	private String windowString = "Steam";
 	/**
 	 * Launch the application.
 	 * @param args 
@@ -106,7 +112,7 @@ public class VRLMenu extends JFrame {
 		JButton btnNewButton = new JButton("Launch Window Catcher Test");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			      String[] arguments = new String[] {"123"};
+			      String[] arguments = new String[] {windowString};
 			      WindowInputTest.main(arguments);
 			}
 		});
@@ -139,6 +145,21 @@ public class VRLMenu extends JFrame {
 		
 		JPanel panel_4 = new JPanel();
 		tabbedPane_1.addTab("Test Settings", null, panel_4, null);
+		
+		JLabel lblWindow = new JLabel("Window:");
+		panel_4.add(lblWindow);
+		
+		textField = new JTextField(windowString);
+		textField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(textField.getText());
+				windowString = textField.getText();
+			}
+		});
+		//System.out.println(arg0.getText());
+		
+		panel_4.add(textField);
+		textField.setColumns(10);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);

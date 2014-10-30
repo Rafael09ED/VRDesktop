@@ -82,7 +82,8 @@ public class VRDWindowInitOnce {
 		// System.out.println("width:" + width + ", height:" + height);
 
 		buffer = new Memory(width * height * 4);
-		GDI32.INSTANCE.GetDIBits(hdcWindow, hBitmap, 0, height, buffer, bmi, WinGDI.DIB_RGB_COLORS);
+		GDI32.INSTANCE.GetDIBits(hdcWindow, hBitmap, 0, height, buffer, bmi,
+				WinGDI.DIB_RGB_COLORS);
 
 		// BufferedImage image = new BufferedImage(width, height,
 		// BufferedImage.TYPE_INT_RGB);
@@ -92,8 +93,7 @@ public class VRDWindowInitOnce {
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		MemoryImageSource source = new MemoryImageSource(width, height,
 				buffer.getIntArray(0, width * height), 0, width);
-		image.getGraphics().drawImage(
-				Toolkit.getDefaultToolkit().createImage(source), 0, 0, null);
+		image.getGraphics().drawImage(Toolkit.getDefaultToolkit().createImage(source), 0, 0, null);
 
 		GDI32.INSTANCE.DeleteObject(hBitmap);
 		User32.INSTANCE.ReleaseDC(hWnd, hdcWindow);

@@ -22,12 +22,13 @@ public class WindowInputTest extends JFrame {
 	private static FPSCounter fpsCounter; 
 	private VRDWindowInitOnce windowCatcher;
 	static WindowInputTest frame;
+	private static String windowPassed;
 	JLabel lblNewLabel;
 	
 	
 	public static void main(String[] args) {
 		fpsCounter = new FPSCounter();
-		
+		windowPassed = args[0];
 				try {
 					frame = new WindowInputTest();
 					frame.setVisible(true);
@@ -49,7 +50,7 @@ public class WindowInputTest extends JFrame {
 	 * Create the frame.
 	 */
 	public WindowInputTest() {
-		windowCatcher = new VRDWindowInitOnce("Steam"); // THIS IS WHERE YOU CHANGE THE PROGRAM TO TAKE THE VIEW OF. IT IS BASED OFF OF WINDOW Title (NOT TSKMGR NAME)
+		windowCatcher = new VRDWindowInitOnce(windowPassed); // THIS IS WHERE YOU CHANGE THE PROGRAM TO TAKE THE VIEW OF. IT IS BASED OFF OF WINDOW Title (NOT TSKMGR NAME)
 		// Next Step is to get a dropdown of all windows and auto unminimize and store previous state
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
